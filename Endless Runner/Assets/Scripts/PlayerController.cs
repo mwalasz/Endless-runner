@@ -30,23 +30,21 @@ public class PlayerController : MonoBehaviour
 
         if(controller.isGrounded)
         {
-            if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
+            if (Input.GetKeyDown(KeyCode.UpArrow) || SwipeManager.swipeUp)
                 Jump();
-            }
         }
         else
             direction.y += gravity * Time.deltaTime;
 
         //Player lane bounds
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.RightArrow) || SwipeManager.swipeRight)
         {
             desiredLane++;
             if (desiredLane == 3)
                 desiredLane = 2;
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.LeftArrow) || SwipeManager.swipeLeft)
         {
             desiredLane--;
             if (desiredLane == -1)
