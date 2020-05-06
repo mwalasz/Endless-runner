@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     private CharacterController controller;
     private Vector3 direction;
     public float forwardSpeed;
+    public float maxSpeed;
 
     //0 - left
     //1 - middle
@@ -28,6 +29,10 @@ public class PlayerController : MonoBehaviour
     {
         if (!PlayerManager.isGameStarted)
             return;
+
+        //speed increse over time
+        if(forwardSpeed < maxSpeed)
+        forwardSpeed += 0.1f * Time.deltaTime;
 
         direction.z = forwardSpeed;
 
