@@ -32,11 +32,13 @@ public class PlayerController : MonoBehaviour
 
         //speed increse over time
         if(forwardSpeed < maxSpeed)
-        forwardSpeed += 0.1f * Time.deltaTime;
+        forwardSpeed += 0.3f * Time.deltaTime;
 
         direction.z = forwardSpeed;
-
-        if(controller.isGrounded)
+      
+       // transform.position = Vector3.Lerp(transform.position, transform.position + direction ,forwardSpeed);
+        
+        if (controller.isGrounded)
         {
             if (Input.GetKeyDown(KeyCode.UpArrow) || SwipeManager.swipeUp)
                 Jump();
@@ -65,13 +67,9 @@ public class PlayerController : MonoBehaviour
 
         //moving player correctly
         if (desiredLane == 0)
-        {
             targetPosition += Vector3.left * laneDistance;
-        }
         else if (desiredLane == 2)
-        {
             targetPosition += Vector3.right * laneDistance;
-        }
 
         //transform.position = Vector3.Lerp(transform.position,targetPosition, forwardSpeed);
         //controller.center = controller.center;
@@ -104,4 +102,13 @@ public class PlayerController : MonoBehaviour
             PlayerManager.gameOver = true;
         }
     }
+
+    void OnTriggerStay(Collider other)
+    {
+        Vector3 newPosition = other.transform.localPosition;
+        newPosition.z = Mathf.Lerp(other.transform.localPosition.z, transform.localPosition.z, Time.deltaTime * 1);
+
+        other.transform.localPosition = newPosition;
+    }
+
 }
