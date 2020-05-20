@@ -12,14 +12,20 @@ public class PlayerManager : MonoBehaviour
 
     public static int numberOfCoins;
     public int timeOfGame;
+    public float timer;
+
     public Text coinsText;
     public Text timeText;
-    public float timer;
+    public Text speedText;
+    
+    public float speed;
     // Start is called before the first frame update
     void Start()
     {
         timer = 0.0f;
         timeOfGame = 0;
+
+        speed = 0;
 
         gameOver = false;
         Time.timeScale = 1;
@@ -27,7 +33,31 @@ public class PlayerManager : MonoBehaviour
         numberOfCoins = 0;
     }
 
-    void GetElapsedTime()
+    // Update is called once per frame
+    void Update()
+    {
+        UpdateTime();
+        UpdateSpeed();
+        
+        if(gameOver)
+        {
+            Time.timeScale = 0;
+            gameOverPanel.SetActive(true);
+        }
+
+        coinsText.text = "Coins: " + numberOfCoins;
+        timeText.text = "Time: " + timeOfGame;
+        speedText.text = "Speed: " + CalculateSpeed();
+
+        if (SwipeManager.tap)
+        {
+            isGameStarted = true;
+            Destroy(startingText);
+        }
+            
+    }
+    
+    void UpdateTime()
     {
         if (isGameStarted)
         {
@@ -36,26 +66,15 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    void UpdateSpeed()
     {
-        GetElapsedTime();
+        GameObject player = GameObject.Find("Player");
+        PlayerController controller = player.GetComponent<PlayerController>();
+        speed = controller.forwardSpeed;
+    }
 
-        if(gameOver)
-        {
-            Time.timeScale = 0;
-            gameOverPanel.SetActive(true);
-        }
-
-        coinsText.text = "Coins: " + numberOfCoins;
-        
-        timeText.text = "Time: " + timeOfGame;
-
-        if (SwipeManager.tap)
-        {
-            isGameStarted = true;
-            Destroy(startingText);
-        }
-            
+    string CalculateSpeed()
+    {
+        return string.Format("{0} km/h", Convert.ToInt32(speed * 10));
     }
 }

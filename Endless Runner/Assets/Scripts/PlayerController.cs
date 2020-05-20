@@ -9,12 +9,12 @@ public class PlayerController : MonoBehaviour
     private Vector3 direction;
     public float forwardSpeed;
     public float maxSpeed;
+    public const float SpeedModifier = 0.3f;
 
     //0 - left
     //1 - middle
     //2 - right
     private int desiredLane = 1;
-
     public float laneDistance = 4; //distance beetwen two lanes
 
     public float jumpForce;
@@ -31,9 +31,9 @@ public class PlayerController : MonoBehaviour
         if (!PlayerManager.isGameStarted)
             return;
 
-        //speed increse over time
+        //speed increase over time
         if(forwardSpeed < maxSpeed)
-        forwardSpeed += 0.3f * Time.deltaTime;
+            forwardSpeed += SpeedModifier * Time.deltaTime;
 
         direction.z = forwardSpeed;
       
