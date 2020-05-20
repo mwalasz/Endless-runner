@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.PackageManager.Requests;
+using static UnityEditor.EditorApplication;
 using UnityEngine;
 
 public class SwipeManager : MonoBehaviour
@@ -13,7 +14,7 @@ public class SwipeManager : MonoBehaviour
     {
         tap = swipeLeft = swipeRight = swipeUp = swipeDown = false;
         #region Standalone Inputs
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             tap = true;
             isDraging = true;
@@ -27,7 +28,7 @@ public class SwipeManager : MonoBehaviour
         #endregion
 
         #region Mobile Input
-        if(Input.touches.Length > 0)
+        if (Input.touches.Length > 0)
         {
             if (Input.touches[0].phase == TouchPhase.Began)
             {
@@ -35,7 +36,7 @@ public class SwipeManager : MonoBehaviour
                 isDraging = true;
                 startTouch = Input.touches[0].position;
             }
-            else if(Input.touches[0].phase == TouchPhase.Ended ||
+            else if (Input.touches[0].phase == TouchPhase.Ended ||
                     Input.touches[0].phase == TouchPhase.Canceled)
             {
                 isDraging = false;
@@ -48,14 +49,14 @@ public class SwipeManager : MonoBehaviour
         swipeDelta = Vector2.zero;
         if (isDraging)
         {
-            if(Input.touches.Length < 0)
+            if (Input.touches.Length < 0)
                 swipeDelta = Input.touches[0].position - startTouch;
             else if (Input.GetMouseButton(0))
                 swipeDelta = (Vector2)Input.mousePosition - startTouch;
         }
 
         //Did we cross the distance?
-        if(swipeDelta.magnitude > 125)
+        if (swipeDelta.magnitude > 125)
         {
             //Direction
             float x = swipeDelta.x;
