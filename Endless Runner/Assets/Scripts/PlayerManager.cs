@@ -46,8 +46,8 @@ public class PlayerManager : MonoBehaviour
         }
 
         coinsText.text = "Coins: " + numberOfCoins;
-        timeText.text = "Time: " + timeOfGame;
-        speedText.text = "Speed: " + CalculateSpeed();
+        timeText.text = "Time: " + timeOfGame + "s";
+        speedText.text = "Speed: " + FormatSpeedText();
 
         if (SwipeManager.tap)
         {
@@ -70,11 +70,11 @@ public class PlayerManager : MonoBehaviour
     {
         GameObject player = GameObject.Find("Player");
         PlayerController controller = player.GetComponent<PlayerController>();
-        speed = controller.forwardSpeed;
+        speed = controller.displayedSpeed;
     }
 
-    string CalculateSpeed()
+    string FormatSpeedText()
     {
-        return string.Format("{0} km/h", Convert.ToInt32(speed * 10));
+        return string.Format("{0} km/h", Convert.ToInt32(speed));
     }
 }

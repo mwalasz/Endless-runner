@@ -7,9 +7,11 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     private CharacterController controller;
     private Vector3 direction;
+    
     public float forwardSpeed;
     public float maxSpeed;
     public const float SpeedModifier = 0.3f;
+    public float displayedSpeed = 0; 
 
     //0 - left
     //1 - middle
@@ -33,7 +35,10 @@ public class PlayerController : MonoBehaviour
 
         //speed increase over time
         if(forwardSpeed < maxSpeed)
+        {
             forwardSpeed += SpeedModifier * Time.deltaTime;
+            displayedSpeed = forwardSpeed * 10;
+        }
 
         direction.z = forwardSpeed;
       

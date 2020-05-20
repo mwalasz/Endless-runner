@@ -533,7 +533,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Time: 0'
+  m_Text: 'Time: 0s'
 --- !u!222 &321661139
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -559,7 +559,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 10.5, y: -8.400024}
-  m_SizeDelta: {x: 187.92, y: 46.61}
+  m_SizeDelta: {x: 210.92, y: 46.61}
   m_Pivot: {x: 1, y: 1}
 --- !u!1 &427991762
 GameObject:
@@ -1056,6 +1056,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   forwardSpeed: 10
   maxSpeed: 25
+  displayedSpeed: 0
   laneDistance: 2.5
   jumpForce: 15
   gravity: -40
