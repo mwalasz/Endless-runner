@@ -15,7 +15,7 @@ public class TileManager : MonoBehaviour
     public float tileLength = 30;
     
     public int numberOfTiles = 5;
-    public int numberOfRoadsideTiles = 2;
+    public int numberOfRoadsideTiles = 3;
     int roadsideTilesCreated = 0;
 
     // Start is called before the first frame update
@@ -26,12 +26,13 @@ public class TileManager : MonoBehaviour
             if (i == 0)
             {
                 SpawnTile(0);
-                SpawnRoadsideTiles(1);
+                SpawnRoadsideTiles(1, 1);
             }
             else
             {
-                SpawnRoadsideTiles(UnityEngine.Random.Range(0, roadsideTilePrefabs.Length));
                 SpawnTile(UnityEngine.Random.Range(0, tilePrefabs.Length));
+                SpawnRoadsideTiles(UnityEngine.Random.Range(0, roadsideTilePrefabs.Length),
+                    UnityEngine.Random.Range(0, roadsideTilePrefabs.Length));
             }
         }
     }
@@ -42,7 +43,8 @@ public class TileManager : MonoBehaviour
         if (playerTransform.position.z - 35 > zSpawn - (numberOfTiles * tileLength))
         {
             SpawnTile(UnityEngine.Random.Range(0, tilePrefabs.Length));
-            SpawnRoadsideTiles(UnityEngine.Random.Range(0, roadsideTilePrefabs.Length));
+            SpawnRoadsideTiles(UnityEngine.Random.Range(0, roadsideTilePrefabs.Length),
+                UnityEngine.Random.Range(0, roadsideTilePrefabs.Length));
             DeleteTiles();
         }
     }
@@ -54,10 +56,10 @@ public class TileManager : MonoBehaviour
         zSpawn += tileLength;
     }
 
-    public void SpawnRoadsideTiles(int tileIndex)
+    public void SpawnRoadsideTiles(int leftTileIndex, int rightTileIndex)
     {
-        GameObject left = Instantiate(roadsideTilePrefabs[tileIndex], new Vector3(0.5F + (tileLength / 4), 0, tileLength * roadsideTilesCreated), transform.rotation);
-        GameObject right = Instantiate(roadsideTilePrefabs[tileIndex], new Vector3(-(0.5F + (tileLength / 4)), 0, tileLength * roadsideTilesCreated), transform.rotation);
+        GameObject left = Instantiate(roadsideTilePrefabs[leftTileIndex], new Vector3(0.5F + (tileLength / 4), 0, tileLength * roadsideTilesCreated), transform.rotation);
+        GameObject right = Instantiate(roadsideTilePrefabs[rightTileIndex], new Vector3(-(0.5F + (tileLength / 4)), 0, tileLength * roadsideTilesCreated), transform.rotation);
         
         activeTiles.Add(left);
         activeTiles.Add(right);
