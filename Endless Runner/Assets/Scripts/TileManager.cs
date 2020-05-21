@@ -15,7 +15,7 @@ public class TileManager : MonoBehaviour
     public float tileLength = 30;
     
     public int numberOfTiles = 5;
-    public int numberOfRoadsideTiles = 1;
+    public int numberOfRoadsideTiles = 2;
     int roadsideTilesCreated = 0;
 
     // Start is called before the first frame update
@@ -24,10 +24,15 @@ public class TileManager : MonoBehaviour
         for(int i = 0; i < numberOfTiles; i++)
         {
             if (i == 0)
+            {
                 SpawnTile(0);
-            else SpawnTile(UnityEngine.Random.Range(0, tilePrefabs.Length));
-            
-            SpawnRoadsideTiles(0);
+                SpawnRoadsideTiles(1);
+            }
+            else
+            {
+                SpawnRoadsideTiles(UnityEngine.Random.Range(0, roadsideTilePrefabs.Length));
+                SpawnTile(UnityEngine.Random.Range(0, tilePrefabs.Length));
+            }
         }
     }
 
@@ -37,7 +42,7 @@ public class TileManager : MonoBehaviour
         if (playerTransform.position.z - 35 > zSpawn - (numberOfTiles * tileLength))
         {
             SpawnTile(UnityEngine.Random.Range(0, tilePrefabs.Length));
-            SpawnRoadsideTiles(0);
+            SpawnRoadsideTiles(UnityEngine.Random.Range(0, roadsideTilePrefabs.Length));
             DeleteTiles();
         }
     }
