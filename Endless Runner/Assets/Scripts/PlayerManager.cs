@@ -46,7 +46,7 @@ public class PlayerManager : MonoBehaviour
         }
 
         coinsText.text = "Coins: " + numberOfCoins;
-        timeText.text = "Time: " + timeOfGame + "s";
+        timeText.text = "Time: " + FormatTimeText();
         speedText.text = "Speed: " + FormatSpeedText();
 
         if (SwipeManager.tap)
@@ -62,7 +62,7 @@ public class PlayerManager : MonoBehaviour
         if (isGameStarted)
         {
             timer += Time.deltaTime;
-            timeOfGame =  Convert.ToInt32(timer % 60);
+            timeOfGame =  Convert.ToInt32(timer);
         }
     }
 
@@ -76,5 +76,11 @@ public class PlayerManager : MonoBehaviour
     string FormatSpeedText()
     {
         return string.Format("{0} km/h", Convert.ToInt32(speed));
+    }
+
+    string FormatTimeText()
+    {
+        // return timeOfGame.ToString("D3") + "s"
+        return (timeOfGame.ToString()).PadLeft(3, ' ') + "s";
     }
 }
