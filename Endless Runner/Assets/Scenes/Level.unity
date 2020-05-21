@@ -596,9 +596,12 @@ MonoBehaviour:
   - {fileID: 9087582585833686476, guid: c2f54711285459c44a1f3ed64dedc8bf, type: 3}
   - {fileID: 5031102546752552702, guid: 4b03af6fa3d1a264d94583fcb31c6274, type: 3}
   - {fileID: 5031102546752552702, guid: 4b03af6fa3d1a264d94583fcb31c6274, type: 3}
+  roadsideTilePrefabs:
+  - {fileID: 8892572924283170548, guid: b0e7fbb9a0b78994cbb0f603c085eaa6, type: 3}
   zSpawn: 0
   tileLength: 30
   numberOfTiles: 5
+  numberOfRoadsideTiles: 1
   playerTransform: {fileID: 766606514}
 --- !u!4 &427991764
 Transform:
