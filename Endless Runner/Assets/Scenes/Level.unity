@@ -590,6 +590,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 043ce5d30f450c34cb3c09e77db1c2b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerTransform: {fileID: 766606514}
   tilePrefabs:
   - {fileID: 7795915884815904715, guid: 3089a19da7cb1c349992a32a74a45237, type: 3}
   - {fileID: 5506365397992162586, guid: f0639e3209f0f434089aef0cea801fda, type: 3}
@@ -597,12 +598,11 @@ MonoBehaviour:
   - {fileID: 5031102546752552702, guid: 4b03af6fa3d1a264d94583fcb31c6274, type: 3}
   - {fileID: 5031102546752552702, guid: 4b03af6fa3d1a264d94583fcb31c6274, type: 3}
   roadsideTilePrefabs:
-  - {fileID: 8892572924283170548, guid: b0e7fbb9a0b78994cbb0f603c085eaa6, type: 3}
+  - {fileID: 46415545947479048, guid: 0497d0ed7a3907f49a3396cd776ffa10, type: 3}
   zSpawn: 0
   tileLength: 30
   numberOfTiles: 5
   numberOfRoadsideTiles: 1
-  playerTransform: {fileID: 766606514}
 --- !u!4 &427991764
 Transform:
   m_ObjectHideFlags: 0
