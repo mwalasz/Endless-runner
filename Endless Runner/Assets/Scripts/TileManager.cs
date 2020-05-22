@@ -14,8 +14,8 @@ public class TileManager : MonoBehaviour
     public float zSpawn = 0;
     public float tileLength = 30;
     
-    public int numberOfTiles = 5;
-    public int numberOfRoadsideTiles = 3;
+    public int numberOfTiles;
+    public int numberOfRoadsideTiles;
     int roadsideTilesCreated = 0;
 
     // Start is called before the first frame update
