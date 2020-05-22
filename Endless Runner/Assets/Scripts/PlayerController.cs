@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     
     public float forwardSpeed;
     public float maxSpeed;
-    public const float SpeedModifier = 0.3f;
+    public const float SpeedModifier = 0.2f;
     public float displayedSpeed = 0; 
 
     //0 - left

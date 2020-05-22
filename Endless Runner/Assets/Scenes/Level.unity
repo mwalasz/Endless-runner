@@ -1068,7 +1068,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forwardSpeed: 10
-  maxSpeed: 25
+  maxSpeed: 30
   displayedSpeed: 0
   laneDistance: 2.5
   jumpForce: 15
