@@ -595,7 +595,7 @@ MonoBehaviour:
   - {fileID: 7795915884815904715, guid: 3089a19da7cb1c349992a32a74a45237, type: 3}
   - {fileID: 5506365397992162586, guid: f0639e3209f0f434089aef0cea801fda, type: 3}
   - {fileID: 9087582585833686476, guid: c2f54711285459c44a1f3ed64dedc8bf, type: 3}
-  - {fileID: 5031102546752552702, guid: 4b03af6fa3d1a264d94583fcb31c6274, type: 3}
+  - {fileID: 4130224255284612187, guid: 6d13a6efaecb7df41adde34deca0393b, type: 3}
   - {fileID: 5031102546752552702, guid: 4b03af6fa3d1a264d94583fcb31c6274, type: 3}
   roadsideTilePrefabs:
   - {fileID: 46415545947479048, guid: 0497d0ed7a3907f49a3396cd776ffa10, type: 3}
