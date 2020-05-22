@@ -18,7 +18,7 @@ public class PlayerManager : MonoBehaviour
     public Text timeText;
     public Text speedText;
     
-    public float speed;
+    public int speed;
     // Start is called before the first frame update
     void Start()
     {
@@ -70,17 +70,34 @@ public class PlayerManager : MonoBehaviour
     {
         GameObject player = GameObject.Find("Player");
         PlayerController controller = player.GetComponent<PlayerController>();
-        speed = controller.displayedSpeed;
+        speed = Convert.ToInt32(controller.displayedSpeed);
     }
 
     string FormatSpeedText()
     {
-        return string.Format("{0} km/h", Convert.ToInt32(speed));
+        Color orange = new Color(1.0f, 0.64f, 0.0f);
+
+        switch (speed)
+        {
+            case int s when (s < 220 && s >= 150):
+                speedText.color = orange;
+                speedText.fontSize = 55;
+                break;
+
+            case int s when (s <= 300 && s >= 220):
+                speedText.color = Color.red;
+                speedText.fontSize = 65;
+                break;
+
+            default:
+                break;
+        }
+
+        return string.Format("{0} km/h", speed);
     }
 
     string FormatTimeText()
     {
-        // return timeOfGame.ToString("D3") + "s"
         return (timeOfGame.ToString()).PadLeft(3, ' ') + "s";
     }
 }
