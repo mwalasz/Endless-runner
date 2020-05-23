@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     private CharacterController controller;
     private Vector3 direction;
+    private AudioSource audio;
     
     public float forwardSpeed;
     public float maxSpeed;
@@ -24,6 +25,8 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        audio = gameObject.AddComponent<AudioSource>();
+        
         controller = GetComponent<CharacterController>();
     }
 
@@ -103,8 +106,9 @@ public class PlayerController : MonoBehaviour
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if(hit.transform.tag =="Obstacle")
+        if (hit.transform.tag == "Obstacle")
         {
+            PlayCrashSound();
             PlayerManager.gameOver = true;
         }
     }
@@ -117,4 +121,8 @@ public class PlayerController : MonoBehaviour
         other.transform.localPosition = newPosition;
     }
 
+    private void PlayCrashSound()
+    {
+        audio.PlayOneShot((AudioClip)Resources.Load("crash_short_cutted"));
+    }
 }
