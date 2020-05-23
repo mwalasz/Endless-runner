@@ -26,7 +26,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         audio = gameObject.AddComponent<AudioSource>();
-        
         controller = GetComponent<CharacterController>();
     }
 
@@ -37,38 +36,12 @@ public class PlayerController : MonoBehaviour
             return;
 
         //speed increase over time
-        if(forwardSpeed < maxSpeed)
-        {
-            forwardSpeed += SpeedModifier * Time.deltaTime;
-            displayedSpeed = forwardSpeed * 10;
-        }
+        IncreaseSpeed();
 
         direction.z = forwardSpeed;
-      
-       // transform.position = Vector3.Lerp(transform.position, transform.position + direction ,forwardSpeed);
         
-        if (controller.isGrounded)
-        {
-            if (Input.GetKeyDown(KeyCode.UpArrow) || SwipeManager.swipeUp)
-                Jump();
-        }
-        else
-            direction.y += gravity * Time.deltaTime;
-
-        //Player lane bounds
-        if (Input.GetKeyDown(KeyCode.RightArrow) || SwipeManager.swipeRight)
-        {
-            desiredLane++;
-            if (desiredLane == 3)
-                desiredLane = 2;
-        }
-
-        if (Input.GetKeyDown(KeyCode.LeftArrow) || SwipeManager.swipeLeft)
-        {
-            desiredLane--;
-            if (desiredLane == -1)
-                desiredLane = 0;
-        }
+        PerformJump();
+        PerformTurn();
 
         //Calculate where we should be next
         Vector3 targetPosition = transform.position.z * transform.forward
@@ -99,9 +72,62 @@ public class PlayerController : MonoBehaviour
         controller.Move(direction * Time.fixedDeltaTime);
     }
 
+    private void PerformTurn()
+    {
+        TurnRight();
+        TurnLeft();
+    }
+
+    private void TurnLeft()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftArrow) || SwipeManager.swipeLeft)
+        {
+            PlayTurnSound();
+
+            desiredLane--;
+            if (desiredLane == -1)
+                desiredLane = 0;
+        }
+    }
+
+    private void TurnRight()
+    {
+        if (Input.GetKeyDown(KeyCode.RightArrow) || SwipeManager.swipeRight)
+        {
+            PlayTurnSound();
+
+            desiredLane++;
+            if (desiredLane == 3)
+                desiredLane = 2;
+        }
+    }
+
+    private void PerformJump()
+    {
+        if (controller.isGrounded)
+        {
+            if (Input.GetKeyDown(KeyCode.UpArrow) || SwipeManager.swipeUp)
+                Jump();
+        }
+        else
+        {
+            direction.y += gravity * Time.deltaTime;
+        }
+    }
+
     private void Jump()
     {
+        PlayJumpSound();
         direction.y = jumpForce;
+    }
+
+    private void IncreaseSpeed()
+    {
+        if (forwardSpeed < maxSpeed)
+        {
+            forwardSpeed += SpeedModifier * Time.deltaTime;
+            displayedSpeed = forwardSpeed * 10;
+        }
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
@@ -124,5 +150,15 @@ public class PlayerController : MonoBehaviour
     private void PlayCrashSound()
     {
         audio.PlayOneShot((AudioClip)Resources.Load("crash_short_cutted"));
+    }
+
+    private void PlayTurnSound()
+    {
+        audio.PlayOneShot((AudioClip)Resources.Load("turning_cutted"));
+    }
+
+    private void PlayJumpSound()
+    {
+        audio.PlayOneShot((AudioClip)Resources.Load("jump"));
     }
 }
