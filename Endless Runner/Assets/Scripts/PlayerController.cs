@@ -7,7 +7,6 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     private CharacterController controller;
     private Vector3 direction;
-    private AudioSource audio;
     
     public float forwardSpeed;
     public float maxSpeed;
@@ -25,7 +24,6 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        audio = gameObject.AddComponent<AudioSource>();
         controller = GetComponent<CharacterController>();
     }
 
@@ -82,7 +80,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.LeftArrow) || SwipeManager.swipeLeft)
         {
-            PlayTurnSound();
+            FindObjectOfType<AudioManager>().PlaySound("Turn");
 
             desiredLane--;
             if (desiredLane == -1)
@@ -94,7 +92,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.RightArrow) || SwipeManager.swipeRight)
         {
-            PlayTurnSound();
+            FindObjectOfType<AudioManager>().PlaySound("Turn");
 
             desiredLane++;
             if (desiredLane == 3)
@@ -117,7 +115,7 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        PlayJumpSound();
+        FindObjectOfType<AudioManager>().PlaySound("Jump");
         direction.y = jumpForce;
     }
 
@@ -134,7 +132,10 @@ public class PlayerController : MonoBehaviour
     {
         if (hit.transform.tag == "Obstacle")
         {
-            PlayCrashSound();
+            var am = FindObjectOfType<AudioManager>();
+            am.PlaySound("Crash");
+            StartCoroutine(AudioManager.FadeOut(am.GetComponent<AudioSource>(), 2, 0.0f));
+
             PlayerManager.gameOver = true;
         }
     }
@@ -145,20 +146,5 @@ public class PlayerController : MonoBehaviour
         newPosition.z = Mathf.Lerp(other.transform.localPosition.z, transform.localPosition.z, Time.deltaTime * 1);
 
         other.transform.localPosition = newPosition;
-    }
-
-    private void PlayCrashSound()
-    {
-        audio.PlayOneShot((AudioClip)Resources.Load("crash_short_cutted"));
-    }
-
-    private void PlayTurnSound()
-    {
-        audio.PlayOneShot((AudioClip)Resources.Load("turning_cutted"));
-    }
-
-    private void PlayJumpSound()
-    {
-        audio.PlayOneShot((AudioClip)Resources.Load("jump"));
     }
 }

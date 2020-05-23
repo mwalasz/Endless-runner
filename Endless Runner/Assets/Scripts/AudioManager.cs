@@ -7,7 +7,6 @@ public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
 
-    // Start is called before the first frame update
     void Start()
     {
         foreach (var s in sounds)
@@ -27,5 +26,25 @@ public class AudioManager : MonoBehaviour
         sounds.ToList()
               .Find(x => x.name.Equals(name))
               .source.Play();
+    }
+
+    public void ChangeMainThemeVolume(float newVolume)
+    { //dlatego bo tutaj jest wywolywane maintheme, DO ZMIANY
+        gameObject.GetComponent<AudioSource>().volume = newVolume;
+    }
+
+    public static IEnumerator FadeOut(AudioSource audioSource, float FadeTime, float endLevel)
+    {
+        float startVolume = audioSource.volume;
+        while (audioSource.volume > endLevel)
+        {
+            audioSource.volume -= startVolume * Time.deltaTime / FadeTime;
+            yield return null;
+        }
+
+        if (endLevel == 0.0f)
+        {
+            audioSource.Stop();
+        }
     }
 }

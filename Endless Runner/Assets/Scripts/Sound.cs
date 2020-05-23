@@ -12,5 +12,9 @@ public class Sound
     public AudioSource source;
     
     public bool isLooped;
-
 }
+
+//internal enum SoundTypes
+//{
+//    MainTheme = "MainTheme",
+//}

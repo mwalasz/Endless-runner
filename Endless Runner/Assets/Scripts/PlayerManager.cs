@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
 {
-    private AudioSource audio;
-
     public static bool gameOver;
     public GameObject gameOverPanel;
 
@@ -25,8 +23,6 @@ public class PlayerManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        audio = gameObject.AddComponent<AudioSource>();
-
         timer = 0.0f;
         timeOfGame = 0;
 
@@ -53,14 +49,6 @@ public class PlayerManager : MonoBehaviour
         coinsText.text = "Coins: " + numberOfCoins;
         timeText.text = "Time: " + FormatTimeText();
         speedText.text = "Speed: " + FormatSpeedText();
-
-        // if (SwipeManager.tap)
-        // {
-        //     PlayStartingUpSound();
-
-        //     isGameStarted = true;
-        //     Destroy(startingText);
-        // }
 
         StartCoroutine(StartGame());
     }
@@ -115,18 +103,16 @@ public class PlayerManager : MonoBehaviour
         {
             if (!isGameStarted)
             {
-                PlayStartingUpSound();
+                var am = FindObjectOfType<AudioManager>();
+                StartCoroutine(AudioManager.FadeOut(am.GetComponent<AudioSource>(), 1, 0.2f));
+                am.PlaySound("StartingUp");
 
                 yield return new WaitForSeconds(1);
+                
                 isGameStarted = true;
 
                 Destroy(startingText);
             }
         }
-    }
-
-    private void PlayStartingUpSound()
-    {
-        audio.PlayOneShot((AudioClip)Resources.Load("starting_car_up"));
     }
 }

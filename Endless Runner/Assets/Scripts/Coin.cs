@@ -14,16 +14,11 @@ public class Coin : MonoBehaviour
         transform.Rotate(70 * Time.deltaTime, 0, 0);
     }
 
-    private void PlayCoinSound()
-    {
-        AudioSource.PlayClipAtPoint((AudioClip)Resources.Load("coin_collect"), this.gameObject.transform.position);
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            PlayCoinSound();
+            FindObjectOfType<AudioManager>().PlaySound("Coin");
             PlayerManager.numberOfCoins += 1;
             Destroy(gameObject);
         }
