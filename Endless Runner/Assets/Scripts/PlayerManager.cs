@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
 {
+    private AudioSource audio;
+
     public static bool gameOver;
     public GameObject gameOverPanel;
 
@@ -17,11 +20,13 @@ public class PlayerManager : MonoBehaviour
     public Text coinsText;
     public Text timeText;
     public Text speedText;
-    
+
     public int speed;
     // Start is called before the first frame update
     void Start()
     {
+        audio = gameObject.AddComponent<AudioSource>();
+
         timer = 0.0f;
         timeOfGame = 0;
 
@@ -38,8 +43,8 @@ public class PlayerManager : MonoBehaviour
     {
         UpdateTime();
         UpdateSpeed();
-        
-        if(gameOver)
+
+        if (gameOver)
         {
             Time.timeScale = 0;
             gameOverPanel.SetActive(true);
@@ -49,20 +54,23 @@ public class PlayerManager : MonoBehaviour
         timeText.text = "Time: " + FormatTimeText();
         speedText.text = "Speed: " + FormatSpeedText();
 
-        if (SwipeManager.tap)
-        {
-            isGameStarted = true;
-            Destroy(startingText);
-        }
-            
+        // if (SwipeManager.tap)
+        // {
+        //     PlayStartingUpSound();
+
+        //     isGameStarted = true;
+        //     Destroy(startingText);
+        // }
+
+        StartCoroutine(StartGame());
     }
-    
+
     void UpdateTime()
     {
         if (isGameStarted)
         {
             timer += Time.deltaTime;
-            timeOfGame =  Convert.ToInt32(timer);
+            timeOfGame = Convert.ToInt32(timer);
         }
     }
 
@@ -99,5 +107,26 @@ public class PlayerManager : MonoBehaviour
     string FormatTimeText()
     {
         return (timeOfGame.ToString()).PadLeft(3, ' ') + "s";
+    }
+
+    private IEnumerator StartGame()
+    {
+        if (SwipeManager.tap)
+        {
+            if (!isGameStarted)
+            {
+                PlayStartingUpSound();
+
+                yield return new WaitForSeconds(1);
+                isGameStarted = true;
+
+                Destroy(startingText);
+            }
+        }
+    }
+
+    private void PlayStartingUpSound()
+    {
+        audio.PlayOneShot((AudioClip)Resources.Load("starting_car_up"));
     }
 }
