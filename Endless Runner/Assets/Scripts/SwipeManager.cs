@@ -1,7 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.PackageManager.Requests;
-using static UnityEditor.EditorApplication;
+﻿//using System.Collections;
+//using System.Collections.Generic;
+//using UnityEditor.PackageManager.Requests;
+//using static UnityEditor.EditorApplication;
 using UnityEngine;
 
 public class SwipeManager : MonoBehaviour
