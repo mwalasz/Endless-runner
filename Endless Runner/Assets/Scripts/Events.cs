@@ -15,4 +15,9 @@ public class Events : MonoBehaviour
         //UnityEditor.EditorApplication.isPlaying = false;
         Application.Quit();
     }
+
+    public void HighscoreTable()
+    {
+        SceneManager.LoadScene("HighScores");
+    }
 }
