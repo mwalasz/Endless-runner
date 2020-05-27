@@ -73,9 +73,14 @@ public class Highscore : MonoBehaviour
         currentHighscoreList.Add(new HighscoreEntry(playerName, coinsNumber));
         currentHighscoreList = currentHighscoreList.OrderByDescending(highscoreEntry => highscoreEntry.playerScore).ToList();
 
+        return currentHighscoreList;
+    }
+
+    private void DisplayHighscoresTable(List<HighscoreEntry> highscoreEntriesList)
+    {
         float highscoreEntryHeight = 30.0f;
         int counter = 0;
-        foreach(var highscore in currentHighscoreList)
+        foreach (var highscore in highscoreEntriesList)
         {
             Transform highscoreEntry = Instantiate(this.highscoreEntryTemplate, this.highscoreEntriesContainer);
             RectTransform highscoreEntryRectTransform = highscoreEntry.GetComponent<RectTransform>();
@@ -106,8 +111,6 @@ public class Highscore : MonoBehaviour
 
             ++counter;
         }
-
-        return currentHighscoreList;
     }
 
     public void OnConfirmPlayerNameButtonClick()
@@ -123,6 +126,7 @@ public class Highscore : MonoBehaviour
         }
 
         highScores.highscoreEntriesList = CreateHighscoresTable(highScores, playerName);
+        DisplayHighscoresTable(highScores.highscoreEntriesList);
 
         PlayerPrefs.SetString("highscoresTable", JsonUtility.ToJson(highScores));
         PlayerPrefs.Save();
