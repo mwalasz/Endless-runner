@@ -8,6 +8,7 @@ public class Highscore : MonoBehaviour
     public Transform highscorePanel;
     public Transform highscoreEntriesContainer;
     public Transform highscoreEntryTemplate;
+    private List<Transform> highScoreEntriesTransforms;
     public Transform highscoreTableTitle;
     public Transform positionTitle;
     public Transform scoreTitle;
@@ -15,6 +16,8 @@ public class Highscore : MonoBehaviour
 
     public InputField playerNameInput;
     public Button playerNameConfirmBtn;
+
+    public Button clearBtn;
 
     private const int MAX_HIGHSCORES = 10;
 
@@ -32,6 +35,7 @@ public class Highscore : MonoBehaviour
         this.scoreTitle.gameObject.SetActive(false);
         this.playerNameTitle.gameObject.SetActive(false);
         this.highscoreEntryTemplate.gameObject.SetActive(false);
+        this.clearBtn.gameObject.SetActive(false);
 
     }
     private void SetHighscoresTableElementsVisible()
@@ -43,7 +47,7 @@ public class Highscore : MonoBehaviour
         this.positionTitle.gameObject.SetActive(true);
         this.scoreTitle.gameObject.SetActive(true);
         this.playerNameTitle.gameObject.SetActive(true);
-
+        this.clearBtn.gameObject.SetActive(true);
     }
 
     private List<HighscoreEntry> CreateHighscoresTable(HighScores highScores, string playerName)
@@ -78,6 +82,7 @@ public class Highscore : MonoBehaviour
 
     private void DisplayHighscoresTable(List<HighscoreEntry> highscoreEntriesList)
     {
+        this.highScoreEntriesTransforms = new List<Transform>();
         float highscoreEntryHeight = 30.0f;
         int counter = 0;
         foreach (var highscore in highscoreEntriesList)
@@ -109,6 +114,8 @@ public class Highscore : MonoBehaviour
             highscoreEntry.Find("Score").GetComponent<Text>().text = highscore.playerScore.ToString();
             highscoreEntry.Find("Name").GetComponent<Text>().text = highscore.playerName;
 
+            this.highScoreEntriesTransforms.Add(highscoreEntry);
+
             ++counter;
         }
     }
@@ -129,6 +136,17 @@ public class Highscore : MonoBehaviour
         DisplayHighscoresTable(highScores.highscoreEntriesList);
 
         PlayerPrefs.SetString("highscoresTable", JsonUtility.ToJson(highScores));
+        PlayerPrefs.Save();
+    }
+
+    public void OnClearButtonClick()
+    {
+        foreach (var highscoreEntry in this.highScoreEntriesTransforms)
+        {
+            highscoreEntry.gameObject.SetActive(false);
+        }
+
+        PlayerPrefs.DeleteKey("highscoresTable");
         PlayerPrefs.Save();
     }
 }
