@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Highscore : MonoBehaviour
@@ -18,12 +19,28 @@ public class Highscore : MonoBehaviour
     public Button playerNameConfirmBtn;
 
     public Button clearBtn;
+    public Button backBtn;
+
+    private static bool isScoreAlreadyAdded = false;
+
+    private static HighScores highScores;
 
     private const int MAX_HIGHSCORES = 10;
 
     private void Awake()
     {
-        SetHighScoresTableElementsInvisible();
+        if(isScoreAlreadyAdded == false)
+        {
+            SetHighScoresTableElementsInvisible();
+        }
+        else
+        {
+            this.playerNameInput.gameObject.SetActive(false);
+            this.playerNameConfirmBtn.gameObject.SetActive(false);
+            this.highscoreEntryTemplate.gameObject.SetActive(false);
+            DisplayHighscoresTable(highScores.highscoreEntriesList);
+        }
+        
      
     }
 
@@ -36,6 +53,7 @@ public class Highscore : MonoBehaviour
         this.playerNameTitle.gameObject.SetActive(false);
         this.highscoreEntryTemplate.gameObject.SetActive(false);
         this.clearBtn.gameObject.SetActive(false);
+        this.backBtn.gameObject.SetActive(false);
 
     }
     private void SetHighscoresTableElementsVisible()
@@ -48,6 +66,7 @@ public class Highscore : MonoBehaviour
         this.scoreTitle.gameObject.SetActive(true);
         this.playerNameTitle.gameObject.SetActive(true);
         this.clearBtn.gameObject.SetActive(true);
+        this.backBtn.gameObject.SetActive(true);
     }
 
     private List<HighscoreEntry> CreateHighscoresTable(HighScores highScores, string playerName)
@@ -122,16 +141,19 @@ public class Highscore : MonoBehaviour
 
     public void OnConfirmPlayerNameButtonClick()
     {
-        string playerName = this.playerNameInput.text;
+        GenerateHighscoresTable(this.playerNameInput.text);        
+        isScoreAlreadyAdded = true;
+    }
 
+    private void GenerateHighscoresTable(string playerName)
+    {
         SetHighscoresTableElementsVisible();
 
-        HighScores highScores = JsonUtility.FromJson<HighScores>(PlayerPrefs.GetString("highscoresTable"));
-        if(highScores == null)
+        highScores = JsonUtility.FromJson<HighScores>(PlayerPrefs.GetString("highscoresTable"));
+        if (highScores == null)
         {
             highScores = new HighScores();
         }
-
         highScores.highscoreEntriesList = CreateHighscoresTable(highScores, playerName);
         DisplayHighscoresTable(highScores.highscoreEntriesList);
 
@@ -146,14 +168,27 @@ public class Highscore : MonoBehaviour
             highscoreEntry.gameObject.SetActive(false);
         }
 
+        highScores = new HighScores();
         PlayerPrefs.DeleteKey("highscoresTable");
         PlayerPrefs.Save();
+    }
+
+    public void onBackButtonClick()
+    {
+        Events eventsObject = FindObjectOfType<Events>();
+        eventsObject.UnhideUIElements();
+        SceneManager.UnloadSceneAsync("HighScores");
     }
 }
 
 public class HighScores
 {
     public List<HighscoreEntry> highscoreEntriesList;
+
+    public HighScores()
+    {
+        this.highscoreEntriesList = new List<HighscoreEntry>();
+    }
 }
 
 [System.Serializable]
