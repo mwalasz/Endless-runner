@@ -2106,7 +2106,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2102072434}
-        m_MethodName: onBackButtonClick
+        m_MethodName: OnBackButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

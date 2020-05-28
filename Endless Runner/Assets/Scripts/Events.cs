@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +12,7 @@ public class Events : MonoBehaviour
 
     public void ReplayGame()
     {
+        Highscore.isScoreAlreadyAdded = false;
         SceneManager.LoadScene("Level");
     }
 

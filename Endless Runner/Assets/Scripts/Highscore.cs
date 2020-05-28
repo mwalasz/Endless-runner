@@ -21,7 +21,7 @@ public class Highscore : MonoBehaviour
     public Button clearBtn;
     public Button backBtn;
 
-    private static bool isScoreAlreadyAdded = false;
+    public static bool isScoreAlreadyAdded = false;
 
     private static HighScores highScores;
 
@@ -173,7 +173,7 @@ public class Highscore : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    public void onBackButtonClick()
+    public void OnBackButtonClick()
     {
         Events eventsObject = FindObjectOfType<Events>();
         eventsObject.UnhideUIElements();
