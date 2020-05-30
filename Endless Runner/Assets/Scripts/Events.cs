@@ -6,9 +6,16 @@ public class Events : MonoBehaviour
 {
     public Text gameOverText;
     public Text speedText;
-    public Button replayBtn;
-    public Button quitBtn;
-    public Button highscoreBtn;
+    public InputField playerNameInput;
+    public Button confirmPlayerNameBtn;
+    public Button skipSavingScoreBtn;
+    public GameObject gameOverPanel;
+
+    public void Awake()
+    {
+        HideScoreSaving();
+        gameOverPanel.SetActive(false);
+    }
 
     public void ReplayGame()
     {
@@ -26,23 +33,59 @@ public class Events : MonoBehaviour
     {
         this.gameOverText.gameObject.SetActive(false);
         this.speedText.gameObject.SetActive(false);
-        this.replayBtn.gameObject.SetActive(false);
-        this.quitBtn.gameObject.SetActive(false);
-        this.highscoreBtn.gameObject.SetActive(false);
+        this.playerNameInput.gameObject.SetActive(false);
+        this.confirmPlayerNameBtn.gameObject.SetActive(false);
+        this.skipSavingScoreBtn.gameObject.SetActive(false);
     }
 
     public void UnhideUIElements()
     {
         this.gameOverText.gameObject.SetActive(true);
         this.speedText.gameObject.SetActive(true);
-        this.replayBtn.gameObject.SetActive(true);
-        this.quitBtn.gameObject.SetActive(true);
-        this.highscoreBtn.gameObject.SetActive(true);
+    }
+
+    public void UnhideScoreSaving()
+    {
+        playerNameInput.gameObject.SetActive(true);
+        confirmPlayerNameBtn.gameObject.SetActive(true);
+        skipSavingScoreBtn.gameObject.SetActive(true);
+    }
+
+   public void HideScoreSaving()
+    {
+        playerNameInput.gameObject.SetActive(false);
+        confirmPlayerNameBtn.gameObject.SetActive(false);
+        skipSavingScoreBtn.gameObject.SetActive(false);
+    }
+
+    public void OnConfirmPlayerNameBtnClick()
+    {
+        PlayerManager.SetPlayerName(this.playerNameInput.text);
+        HideScoreSaving();
+        SceneManager.LoadScene("HighScores", LoadSceneMode.Additive);
+    }
+
+    public void OnSkipBtnClick()
+    {
+        HideScoreSaving();
+        this.gameOverPanel.SetActive(true);
+        Highscore.isScoreAlreadyAdded = true;
+    }
+
+    public void UnhideGameOverPanel()
+    {
+        this.gameOverPanel.SetActive(true);
+    }
+
+    public void HideGameOverPanel()
+    {
+        this.gameOverPanel.SetActive(false);
     }
 
     public void HighscoreTable()
     {
-        HideUIElements();    
+        HideUIElements();
+        HideGameOverPanel();
         SceneManager.LoadScene("HighScores", LoadSceneMode.Additive);
     }
 }

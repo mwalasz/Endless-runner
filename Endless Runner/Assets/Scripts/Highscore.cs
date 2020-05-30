@@ -15,9 +15,6 @@ public class Highscore : MonoBehaviour
     public Transform scoreTitle;
     public Transform playerNameTitle;
 
-    public InputField playerNameInput;
-    public Button playerNameConfirmBtn;
-
     public Button clearBtn;
     public Button backBtn;
 
@@ -32,16 +29,15 @@ public class Highscore : MonoBehaviour
         if(isScoreAlreadyAdded == false)
         {
             SetHighScoresTableElementsInvisible();
+
+            GenerateHighscoresTable(PlayerManager.getPlayerName());
+            isScoreAlreadyAdded = true;
         }
         else
         {
-            this.playerNameInput.gameObject.SetActive(false);
-            this.playerNameConfirmBtn.gameObject.SetActive(false);
             this.highscoreEntryTemplate.gameObject.SetActive(false);
-            DisplayHighscoresTable(highScores.highscoreEntriesList);
-        }
-        
-     
+            GenerateHighscoresTable("");
+        }         
     }
 
     private void SetHighScoresTableElementsInvisible()
@@ -58,8 +54,6 @@ public class Highscore : MonoBehaviour
     }
     private void SetHighscoresTableElementsVisible()
     {
-        this.playerNameInput.gameObject.SetActive(false);
-        this.playerNameConfirmBtn.gameObject.SetActive(false);
         this.highscorePanel.gameObject.SetActive(true);
         this.highscoreTableTitle.gameObject.SetActive(true);
         this.positionTitle.gameObject.SetActive(true);
@@ -76,24 +70,27 @@ public class Highscore : MonoBehaviour
         List<HighscoreEntry> currentHighscoreList = highScores.highscoreEntriesList != null
             ? highScores.highscoreEntriesList
             : new List<HighscoreEntry>();
-       
-        if (currentHighscoreList.Count > 0)
+
+        if (playerName != "")
         {
-            int currentMinimumScore = currentHighscoreList.Min(highscoreEntry => highscoreEntry.playerScore);
-            if (coinsNumber < currentMinimumScore && currentHighscoreList.Count == MAX_HIGHSCORES)
+            if (currentHighscoreList.Count > 0)
             {
-                return currentHighscoreList;
+                int currentMinimumScore = currentHighscoreList.Min(highscoreEntry => highscoreEntry.playerScore);
+                if (coinsNumber < currentMinimumScore && currentHighscoreList.Count == MAX_HIGHSCORES)
+                {
+                    return currentHighscoreList;
+                }
+
+                int currentMinimumScoreEntryIndex = currentHighscoreList.FindIndex(highscoreEntry => highscoreEntry.playerScore == currentMinimumScore);
+
+                if (currentHighscoreList.Count == MAX_HIGHSCORES)
+                {
+                    currentHighscoreList.RemoveAt(currentMinimumScoreEntryIndex);
+                }
             }
 
-            int currentMinimumScoreEntryIndex = currentHighscoreList.FindIndex(highscoreEntry => highscoreEntry.playerScore == currentMinimumScore);
-
-            if (currentHighscoreList.Count == MAX_HIGHSCORES)
-            {
-                currentHighscoreList.RemoveAt(currentMinimumScoreEntryIndex);
-            }
+            currentHighscoreList.Add(new HighscoreEntry(playerName, coinsNumber));
         }
-
-        currentHighscoreList.Add(new HighscoreEntry(playerName, coinsNumber));
         currentHighscoreList = currentHighscoreList.OrderByDescending(highscoreEntry => highscoreEntry.playerScore).ToList();
 
         return currentHighscoreList;
@@ -139,12 +136,6 @@ public class Highscore : MonoBehaviour
         }
     }
 
-    public void OnConfirmPlayerNameButtonClick()
-    {
-        GenerateHighscoresTable(this.playerNameInput.text);        
-        isScoreAlreadyAdded = true;
-    }
-
     private void GenerateHighscoresTable(string playerName)
     {
         SetHighscoresTableElementsVisible();
@@ -176,7 +167,7 @@ public class Highscore : MonoBehaviour
     public void OnBackButtonClick()
     {
         Events eventsObject = FindObjectOfType<Events>();
-        eventsObject.UnhideUIElements();
+        eventsObject.UnhideGameOverPanel();
         SceneManager.UnloadSceneAsync("HighScores");
     }
 }

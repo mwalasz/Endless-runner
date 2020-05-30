@@ -20,6 +20,10 @@ public class PlayerManager : MonoBehaviour
     public Text speedText;
 
     public int speed;
+
+    private static string playerName;
+    bool alreadyDone = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,7 +47,12 @@ public class PlayerManager : MonoBehaviour
         if (gameOver)
         {
             Time.timeScale = 0;
-            gameOverPanel.SetActive(true);
+            if (!alreadyDone)
+            {
+                Events eventsObject = FindObjectOfType<Events>();
+                eventsObject.UnhideScoreSaving();
+                alreadyDone = true;
+            }
         }
 
         coinsText.text = "Coins: " + numberOfCoins;
@@ -114,5 +123,15 @@ public class PlayerManager : MonoBehaviour
                 Destroy(startingText);
             }
         }
+    }
+
+    public static string getPlayerName()
+    {
+        return playerName;
+    }
+
+    public static void SetPlayerName(string _playerName)
+    {
+        playerName = _playerName;
     }
 }
