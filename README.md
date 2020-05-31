@@ -5,25 +5,53 @@
 Car Runner is an Android 3D mobile game made using Unity game engine. 
 
 Player's goal is to travel the maximum distance and collect as many coins as possible,\
-avoiding all of created obstacles on the road. 
+avoiding all of obstacles on the road. 
 
 <br><br>
 
 ## About
 
-Car Runner is a game in endless-runner style. While steering a car, among generated on the road obstacles you will see road blocks, traffic cones and road works barriers of various heights and sizes. Your gameplay will be located in scenery with nice trees, mushrooms and green grass around you with beatifull blue sky at the top of it. Such a wonderfull scenery!
+Car Runner is a game in endless-runner style. While steering a car, among generated on the road obstacles you will see road blocks, traffic cones and road works barriers of various heights and sizes and of course the most important in game - coins. Your gameplay will be located in landscape with trees, mushrooms and green grass with marvelous blue sky. Such a wonderfull scenery!
 
 After crash you will have possibility to save your score with your name in highscores table as well as browse highscores table with TOP 10 scores.
 
 ## Screenshots:
 
-TBA
+1. Home screen with sound turned on:
+
+![Home screen](./resources/home.png)
+
+2. Home screen with muted sound:
+
+![Home screen muted](./resources/home_muted.png)
+
+3. Start of the game:
+
+![Start](./resources/start.png)
+
+4. Entering your name or skipping adding score to highscores table after crash:
+
+![Crash](./resources/enter_name.png)
+
+5. Game over screen:
+
+![Gameover](./resources/gameover.png)
+
+6. Highscores table:
+
+![Highscores](./resources/highscores.png)
 
 ## Gameplay
 
-TBA
+<p align="center">
+<img src="./resources/gameplay.gif" class="center">
+ </p>
 
 
 ## Installation ![GitHub All Releases](https://img.shields.io/github/downloads/mwalasz/Endless-runner/total)
 
-You can install Car-runner on device running Android OS using provided application package in \*.apk format file, by clicking this link to download latest release [**v.1.1.0**](https://github.com/mwalasz/Endless-runner/releases/download/v1.1.0/CarRunner_1_1_0.apk) or entering [**Releases**](https://github.com/mwalasz/Endless-runner/releases) section in our repository to choose your version.
+You can install Car-runner on device running Android OS version 4.4 KitKat minimum, using provided application package in \*.apk format file, by clicking this link to download latest release [**v.1.2.0**](https://github.com/mwalasz/Endless-runner/releases/download/v1.2.0/CarRunner_1_2_0.apk) or entering [**Releases**](https://github.com/mwalasz/Endless-runner/releases) section in our repository to choose your version.
+
+## Technologies
+* Unity 2019.3.12f1
+* C# 7.3
