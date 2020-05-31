@@ -1,11 +1,15 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
+    private static bool isSoundTurnedOn = true;
+    public Button soundOnOffBtn;
+    public Sprite soundOnImg;
+    public Sprite soundOffImg;
 
     void Start()
     {
@@ -18,18 +22,28 @@ public class AudioManager : MonoBehaviour
             s.source.volume = s.volume;
         }
 
-        PlaySound("MainTheme");
+        if (!isSoundTurnedOn)
+        {
+            PauseAudio();
+        }           
+        else
+        {
+            PlaySound("MainTheme");
+        }
     }
 
     public void PlaySound(string name)
     {
-        sounds.ToList()
-              .Find(x => x.name.Equals(name))
-              .source.Play();
+        if (isSoundTurnedOn)
+        {
+            sounds.ToList()
+                  .Find(x => x.name.Equals(name))
+                  .source.Play();
+        }
     }
 
     public void ChangeMainThemeVolume(float newVolume)
-    { //dlatego bo tutaj jest wywolywane maintheme, DO ZMIANY
+    {
         gameObject.GetComponent<AudioSource>().volume = newVolume;
     }
 
@@ -46,5 +60,31 @@ public class AudioManager : MonoBehaviour
         {
             audioSource.Stop();
         }
+    }
+
+    private void PauseAudio()
+    {
+        gameObject.GetComponent<AudioSource>().Pause();
+        this.soundOnOffBtn.GetComponent<Image>().sprite = this.soundOffImg;
+    }
+
+    private void ResumeAudio()
+    {
+        gameObject.GetComponent<AudioSource>().Play();
+        this.soundOnOffBtn.GetComponent<Image>().sprite = this.soundOnImg;
+    }
+
+    public void ToggleSoundPlaying()
+    {
+        if (isSoundTurnedOn)
+        {
+            PauseAudio();           
+        } 
+        else
+        {
+            ResumeAudio();
+        }
+
+        isSoundTurnedOn = !isSoundTurnedOn;
     }
 }
