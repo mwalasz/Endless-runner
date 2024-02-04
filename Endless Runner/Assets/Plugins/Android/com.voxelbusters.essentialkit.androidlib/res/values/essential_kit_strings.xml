@@ -1,0 +1,37 @@
+<resources>
+  <string name="WEBVIEW_TOOLBAR_BACK">Back</string>
+  <string name="WEBVIEW_TOOLBAR_FORWARD">Forward</string>
+  <string name="WEBVIEW_TOOLBAR_RELOAD">Reload</string>
+  <string name="WEBVIEW_TOOLBAR_DONE">Done</string>
+  <string name="USES_CLOUD_SERVICES">true</string>
+  <string name="GAME_SERVICES_SIGN_IN_FAILED">Sign in failed</string>
+  <string name="GAME_SERVICES_SERVER_CLIENT_ID">113386462231-qq9kcanb89e4od44m680rjutr26d5st2.apps.googleusercontent.com</string>
+  <string name="GAME_SERVICES_NEEDS_PROFILE_SCOPE">true</string>
+  <string name="GAME_SERVICES_NEEDS_EMAIL_SCOPE">true</string>
+  <string name="GAME_SERVICES_SHOW_ERROR_DIALOGS">true</string>
+  <string name="GAME_SERVICES_NEEDS_POPUPS_AT_TOP">true</string>
+  <string name="ADDRESS_BOOK_PERMISSON_REASON">
+  </string>
+  <string name="ACCESS_DENIED">Permission not allowed by the user</string>
+  <string name="NOTIFICATION_SERVICES_CONTENT_TITLE_KEY">content_title</string>
+  <string name="NOTIFICATION_SERVICES_CONTENT_TEXT_KEY">content_text</string>
+  <string name="NOTIFICATION_SERVICES_BADGE_KEY">badge</string>
+  <string name="NOTIFICATION_SERVICES_CHANNEL_ID_KEY">channel_id</string>
+  <string name="NOTIFICATION_SERVICES_PRIORITY_KEY">priority</string>
+  <string name="NOTIFICATION_SERVICES_SOUND_FILE_NAME_KEY">sound</string>
+  <string name="NOTIFICATION_SERVICES_BIG_PICTURE_KEY">big_picture</string>
+  <string name="NOTIFICATION_SERVICES_LARGE_ICON_KEY">large_icon</string>
+  <string name="NOTIFICATION_SERVICES_PERSISTENCE_ID_KEY">persistence_id</string>
+  <string name="NOTIFICATION_SERVICES_TICKER_TEXT_KEY">ticker_text</string>
+  <string name="NOTIFICATION_SERVICES_TAG_KEY">tag</string>
+  <string name="NOTIFICATION_SERVICES_USER_INFO_KEY">user_info</string>
+  <string name="NOTIFICATION_SERVICES_NOTIFICATION_IDENTIFIER_KEY">notification-identifier</string>
+  <string name="NOTIFICATION_SERVICES_USES_PUSH_NOTIFICATION_SERVICE">true</string>
+  <string name="NOTIFICATION_SERVICES_USES_EXTERNAL_SERVICE">false</string>
+  <string name="NOTIFICATION_SERVICES_NEEDS_VIBRATION">true</string>
+  <string name="NOTIFICATION_SERVICES_NEEDS_CUSTOM_ICON">true</string>
+  <string name="NOTIFICATION_SERVICES_ALLOW_NOTIFICATION_DISPLAY_WHEN_APP_IS_FOREGROUND">true</string>
+  <string name="NOTIFICATION_SERVICES_ACCENT_COLOR">#FFFFFF</string>
+  <string name="WEB_VIEW_ALLOW_BACK_NAVIGATION_KEY">true</string>
+  <string name="NOTIFICATION_SERVICES_ALLOW_IN_EXACT_TIME_SCHEDULING">true</string>
+</resources>

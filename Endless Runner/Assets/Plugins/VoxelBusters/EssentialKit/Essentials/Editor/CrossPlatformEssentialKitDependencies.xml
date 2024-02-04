@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--DONT MODIFY HERE. AUTO GENERATED DEPENDENCIES FROM AndroidLibraryDependenciesGenerator.cs [Cross Platform Essential Kit : Native Plugins 2.0-->
+<dependencies>
+	<androidPackages>
+		<!--Dependency added for using RateMyApp or Utilities-->
+		<androidPackage
+			spec="com.google.android.play:review:2.0.1+" />
+		<!--Dependency added for using AndroidX Core Libraries-->
+		<androidPackage
+			spec="androidx.core:core:1.7.0+" />
+	</androidPackages>
+</dependencies>

@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e0ea44ec561e4ff9a51024a414c5e02, type: 3}
+  m_Name: EssentialKitSettings
+  m_EditorClassIdentifier: 
+  m_applicationSettings:
+    m_logLevel: 3
+    m_appStoreIds:
+      m_ios: 
+      m_tvos: 
+      m_android: 
+    m_usagePermissionSettings:
+      m_addressBookUsagePermission:
+        m_description: $productName uses contacts.
+        m_descriptionOverrides:
+          m_ios: 
+          m_tvos: 
+          m_android: 
+      m_cameraUsagePermission:
+        m_description: $productName uses camera.
+        m_descriptionOverrides:
+          m_ios: 
+          m_tvos: 
+          m_android: 
+      m_galleryUsagePermission:
+        m_description: $productName uses gallery.
+        m_descriptionOverrides:
+          m_ios: 
+          m_tvos: 
+          m_android: 
+      m_galleryWritePermission:
+        m_description: $productName wants to write to gallery.
+        m_descriptionOverrides:
+          m_ios: 
+          m_tvos: 
+          m_android: 
+      m_locationWhenInUsePermission:
+        m_description: $productName would like to user your location.
+        m_descriptionOverrides:
+          m_ios: 
+          m_tvos: 
+          m_android: 
+    m_rateMyAppSettings:
+      m_isEnabled: 1
+      m_confirmationDialogSettings:
+        m_canShow: 1
+        m_promptTitle: Rate My App
+        m_promptDescription: If you enjoy using Native Plugins would you mind taking
+          a moment to rate it? It wont take more than a minute. Thanks for your support.
+        m_okButtonLabel: Ok
+        m_cancelButtonLabel: Cancel
+        m_remindLaterButtonLabel: Remind Me Later
+        m_canShowRemindMeLaterButton: 1
+      m_defaultControllerSettings:
+        m_initialPromptConstraints:
+          m_minHours: 2
+          m_minLaunches: 0
+        m_repeatPromptConstraints:
+          m_minHours: 6
+          m_minLaunches: 5
+  m_addressBookSettings:
+    m_isEnabled: 1
+    m_defaultImage: {fileID: 2800000, guid: c946ebf95f163884984e9690f6f7ee28, type: 3}
+  m_nativeUISettings:
+    m_isEnabled: 1
+    m_customUICollection:
+      m_rendererPrefab: {fileID: 114882653979984282, guid: ee1dcec1533844bc19c19281b8d148b6,
+        type: 3}
+      m_alertDialogPrefab: {fileID: 114719650402599042, guid: 0bea496bdcd2d41ebb1104db0fd905dc,
+        type: 3}
+      m_datePickerPrefab: {fileID: 0}
+  m_sharingServicesSettings:
+    m_isEnabled: 1
+  m_networkServicesSettings:
+    m_isEnabled: 1
+    m_hostAddress:
+      m_ipv4: 8.8.8.8
+      m_ipv6: 0:0:0:0:0:FFFF:0808:0808
+    m_autoStartNotifier: 1
+    m_pingSettings:
+      m_maxRetryCount: 3
+      m_timeGapBetweenPolling: 2
+      m_timeOutPeriod: 60
+      m_port: 53
+  m_utilitySettings:
+    m_isEnabled: 1
+    m_usesStoreRatingUtility: 1

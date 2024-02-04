@@ -1,0 +1,18 @@
+{
+    "name": "VoxelBusters.CoreLibrary.Editor.NativePlugins",
+    "references": [
+        "VoxelBusters.CoreLibrary",
+        "VoxelBusters.CoreLibrary.Editor",
+        "VoxelBusters.CoreLibrary.NativePlugins"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+}

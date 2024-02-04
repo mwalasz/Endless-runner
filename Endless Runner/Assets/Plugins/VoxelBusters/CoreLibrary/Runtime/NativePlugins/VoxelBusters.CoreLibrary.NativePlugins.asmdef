@@ -1,0 +1,14 @@
+{
+    "name": "VoxelBusters.CoreLibrary.NativePlugins",
+    "references": [
+        "VoxelBusters.CoreLibrary"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+}

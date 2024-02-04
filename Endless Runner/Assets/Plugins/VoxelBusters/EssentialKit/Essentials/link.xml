@@ -1,0 +1,16 @@
+﻿<linker>
+  <assembly fullname="VoxelBusters.EssentialKit.AndroidModule">
+    <namespace fullname="VoxelBusters.EssentialKit.AddressBookCore.Android" preserve="all" />
+    <namespace fullname="VoxelBusters.EssentialKit.BillingServicesCore.Android" preserve="all" />
+    <namespace fullname="VoxelBusters.EssentialKit.CloudServicesCore.Android" preserve="all" />
+    <namespace fullname="VoxelBusters.EssentialKit.GameServicesCore.Android" preserve="all" />
+    <namespace fullname="VoxelBusters.EssentialKit.MediaServicesCore.Android" preserve="all" />
+    <namespace fullname="VoxelBusters.EssentialKit.NativeUICore.Android" preserve="all" />
+    <namespace fullname="VoxelBusters.EssentialKit.NetworkServicesCore.Android" preserve="all" />
+    <namespace fullname="VoxelBusters.EssentialKit.NotificationServicesCore.Android" preserve="all" />
+    <namespace fullname="VoxelBusters.EssentialKit.SharingServicesCore.Android" preserve="all" />
+    <namespace fullname="VoxelBusters.EssentialKit.WebViewCore.Android" preserve="all" />
+    <namespace fullname="VoxelBusters.EssentialKit.DeepLinkServicesCore.Android" preserve="all" />
+    <namespace fullname="VoxelBusters.EssentialKit.ExtrasCore.Android" preserve="all" />
+  </assembly>
+</linker>

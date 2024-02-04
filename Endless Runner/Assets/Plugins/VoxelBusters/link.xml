@@ -1,0 +1,9 @@
+﻿<linker>
+  <assembly fullname="VoxelBusters.EssentialKit.AndroidModule">
+    <namespace fullname="VoxelBusters.EssentialKit.AddressBookCore.Android" preserve="all" />
+    <namespace fullname="VoxelBusters.EssentialKit.NativeUICore.Android" preserve="all" />
+    <namespace fullname="VoxelBusters.EssentialKit.NetworkServicesCore.Android" preserve="all" />
+    <namespace fullname="VoxelBusters.EssentialKit.SharingServicesCore.Android" preserve="all" />
+    <namespace fullname="VoxelBusters.EssentialKit.ExtrasCore.Android" preserve="all" />
+  </assembly>
+</linker>
